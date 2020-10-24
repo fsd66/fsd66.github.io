@@ -3,7 +3,7 @@ import React from "react";
 class WorkRequestForm extends React.Component {
     static defaultProps = {
         additionalInfoMaxLength: 300,
-        defaultCompensationAmount: 150,
+        defaultCompensationAmount: "",
         defaultCompensationRate: "hr",
         submitMessage: "Thank you for your request, I will get back to you as soon as I can."
     }
@@ -74,6 +74,19 @@ class WorkRequestForm extends React.Component {
         }).then(data => console.log("Data:", data)).catch(err => console.log("Error:", err));
     }
 
+    componentDidMount() {
+        fetch("https://api.fsd66.net/contact/rate", {
+            method: "GET",
+            credentials: "omit",
+            headers: { "Content-Type": "application/json" }
+        }).then(res => {
+            return res.json();
+        }).then(data => {
+            this.formData.compensation = data.compensation || this.props.defaultCompensationAmount;
+            this.formData.compensationRate = data.rate || this.props.defaultCompensationRate;
+        });
+    }
+
     render() {
         if (this.state.submitted) {
             return (
@@ -83,13 +96,20 @@ class WorkRequestForm extends React.Component {
             );
         }
 
-        const specify = (
-            <div>
-                <input type="text" placeholder="Please specify" className="form-input" />
-            </div>
-        );
-        const workTypeOther = this.state.workTypeOther ? specify : null;
-        const workCategoryOther = this.state.workCategoryOther ? specify : null;
+        const createSpecifyField = (formValue) => {
+            const onChange = (value, e) => {
+                this.updateFormValue(formValue, value);
+            };
+
+            return (
+                <div>
+                    <input type="text" placeholder="Please specify" className="form-input" onChange={(e) => onChange(e.target.value, e)} />
+                </div>
+            );
+        };
+
+        const workTypeOther = this.state.workTypeOther ? createSpecifyField("workTypeOther") : null;
+        const workCategoryOther = this.state.workCategoryOther ? createSpecifyField("workCategoryOther") : null;
 
         return (
             <div>
@@ -153,7 +173,7 @@ class WorkRequestForm extends React.Component {
 
                     <div className="form-section">
                         <label className="form-label">Compensation*: </label>
-                        $<input type="number" className="form-input number-input" name="compensation" defaultValue={this.props.defaultCompensationAmount} onChange={e => this.updateFormValue(e.target.name, e.target.value)} required={true} />
+                        $<input type="number" className="form-input number-input" name="compensation" defaultValue={this.formData["compensation"]} onChange={e => this.updateFormValue(e.target.name, e.target.value)} required={true} />
                         <select className="form-input" name="compensationRate" onChange={e => this.updateFormValue(e.target.name, e.target.value)} defaultValue={this.formData["compensationRate"]} required={true}>
                             <option value="hr">/ Hr</option>
                             <option value="yr">/ Yr</option>
