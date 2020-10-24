@@ -1,0 +1,40 @@
+.App {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.display-none {
+  display: none;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.form-section {
+  margin: 10px 5px;
+}
+
+label.form-label {
+  display: block;
+}
+
+.form-input {
+  text-align: center;
+}
+
+select.wide-select {
+  width: 150px
+}
+
+textarea.form-textarea {
+  width: 400px;
+  height: 100px;
+  text-align: left;
+  resize: none;
+}
+
+input.number-input {
+  width: 100px;
+  text-align: right;
+}
