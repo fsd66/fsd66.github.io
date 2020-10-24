@@ -62,7 +62,6 @@ class WorkRequestForm extends React.Component {
 
     submitForm(e) {
         e.preventDefault();
-        console.log(this.formData);
         this.setState({ submitted: true });
 
         fetch("https://api.fsd66.net/contact/", {
@@ -71,7 +70,6 @@ class WorkRequestForm extends React.Component {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(this.formData)
         }).then(res => {
-            console.log("Response:", res);
             return res.json();
         }).then(data => console.log("Data:", data)).catch(err => console.log("Error:", err));
     }
