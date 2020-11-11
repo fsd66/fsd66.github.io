@@ -38,3 +38,9 @@ input.number-input {
   width: 100px;
   text-align: right;
 }
+
+input.button {
+  width: 200px;
+  height: 40px;
+  margin: 5px;
+}
