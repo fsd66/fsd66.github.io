@@ -13,10 +13,12 @@ function App() {
       <div>
         <p>Please visit my <GithubLink /></p>
       </div>
+
       <div>
         <div>Enjoy my work?</div>
         <KoFiLink />
       </div>
+
       <WorkRequest />
     </div>
   );

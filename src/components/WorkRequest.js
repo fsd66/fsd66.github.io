@@ -22,7 +22,7 @@ class WorkRequest extends React.Component {
             <div>
                 <h4>Looking to hire or need a job done?</h4>
                 <div>
-                    <input type="button" value={this.state.contactOpened ? "Close" : "Contact"} onClick={this.toggleContactForm} />
+                    <input className="button" type="button" value={this.state.contactOpened ? "Close" : "Contact"} onClick={this.toggleContactForm} />
                 </div>
 
                 <div className={this.state.contactOpened ? "" : "display-none"}>

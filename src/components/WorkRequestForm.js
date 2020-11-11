@@ -59,18 +59,6 @@ class WorkRequestForm extends React.Component {
             );
         }
 
-        const createSpecifyField = (formValue) => {
-            const onChange = (value, e) => {
-                this.updateFormValue(formValue, value);
-            };
-
-            return (
-                <div>
-                    <input type="text" placeholder="Please specify" className="form-input" onChange={(e) => onChange(e.target.value, e)} />
-                </div>
-            );
-        };
-
         return (
             <div>
                 <form className="work-form">
@@ -94,7 +82,7 @@ class WorkRequestForm extends React.Component {
                     </div>
 
                     <div>
-                        <input type="submit" className="form-input" value="Submit" onClick={e => this.submitForm(e)} />
+                        <input type="submit" className="form-input button" value="Submit" onClick={e => this.submitForm(e)} />
                     </div>
                 </form>
             </div>
