@@ -5,6 +5,7 @@ import Header from "./components/Header";
 import GithubLink from "./components/GithubLink";
 import WorkRequest from "./components/WorkRequest";
 import KoFiLink from "./components/KoFiLink";
+import CryptoLink from "./components/CryptoLink";
 
 function App() {
   return (
@@ -16,7 +17,14 @@ function App() {
 
       <div>
         <div>Enjoy my work?</div>
-        <KoFiLink />
+
+        <div>
+          <KoFiLink />
+        </div>
+
+        <div>
+          <CryptoLink />
+        </div>
       </div>
 
       <WorkRequest />
